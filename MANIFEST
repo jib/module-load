@@ -1,0 +1,12 @@
+lib/Module/Load.pm
+Makefile.PL
+MANIFEST
+README
+t/01_Module-Load.t
+t/to_load/config_file
+t/to_load/LoadIt.pm
+t/to_load/LoadMe.pl
+t/to_load/Must/Be/Loaded.pm
+t/to_load/ToBeLoaded
+t/to_load/TestModule.pm
+META.yml                                 Module meta-data (added by MakeMaker)
