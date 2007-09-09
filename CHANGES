@@ -1,0 +1,8 @@
+Changes for 0.12    Sun Sep  9 11:11:08 2007
+============================================
+* Fix for UNIX'ifying path names on VMS, as suggested by
+  John Malmberg
+
+Changes for 0.10    Wed Jun  2 14:31:23 2004
+============================================
+* Make explicit imports work (Thanks to Jonas B. Nielsen)
