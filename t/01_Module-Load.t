@@ -11,47 +11,27 @@ BEGIN { chdir 't' if -d 't' }
 use strict;
 use lib qw[../lib to_load];
 use Module::Load;
-use Test::More tests => 14;
+use Test::More 'no_plan';
 
+### test loading files & modules
+{   my @Map = (
+        # module               flag diagnostic
+        [q|Must::Be::Loaded|,   1,  'module'],
+        [q|LoadMe.pl|,          0,  'file'  ],
+        [q|LoadIt|,             1,  'ambiguous module'  ],
+        [q|ToBeLoaded|,         0,  'ambiguous file'    ],
+    );
 
-{
-    my $mod = 'Must::Be::Loaded';
-    my $file = Module::Load::_to_file($mod,1);
+    for my $aref (@Map) {
+        my($mod, $flag, $diag) = @$aref;
 
-    eval { load $mod };
+        my $file = Module::Load::_to_file($mod, $flag);
 
-    is( $@, '', qq[Loading module '$mod'] );
-    ok( defined($INC{$file}), q[... found in %INC] );
-}
+        eval { load $mod };
 
-{
-    my $mod = 'LoadMe.pl';
-    my $file = Module::Load::_to_file($mod);
-
-    eval { load $mod };
-
-    is( $@, '', qq[Loading File '$mod'] );
-    ok( defined($INC{$file}), q[... found in %INC] );
-}
-
-{
-    my $mod = 'LoadIt';
-    my $file = Module::Load::_to_file($mod,1);
-
-    eval { load $mod };
-
-    is( $@, '', qq[Loading Ambigious Module '$mod'] );
-    ok( defined($INC{$file}), q[... found in %INC] );
-}
-
-{
-    my $mod = 'ToBeLoaded';
-    my $file = Module::Load::_to_file($mod);
-
-    eval { load $mod };
-
-    is( $@, '', qq[Loading Ambigious File '$mod'] );
-    ok( defined($INC{$file}), q[... found in %INC] );
+        is( $@, '',                 qq[Loading $diag '$mod' $@] );
+        ok( defined($INC{$file}),   qq[  '$file' found in \%INC] );
+    }
 }
 
 ### Test importing functions ###
