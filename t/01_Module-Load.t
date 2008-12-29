@@ -1,17 +1,17 @@
 ### Module::Load test suite ###
-BEGIN { 
+BEGIN {
     if( $ENV{PERL_CORE} ) {
         chdir '../lib/Module/Load' if -d '../lib/Module/Load';
         unshift @INC, '../../..';
     }
-} 
+}
 
 BEGIN { chdir 't' if -d 't' }
 
 use strict;
 use lib qw[../lib to_load];
 use Module::Load;
-use Test::More tests => 13;
+use Test::More tests => 14;
 
 
 {
@@ -57,12 +57,16 @@ use Test::More tests => 13;
 ### Test importing functions ###
 {   my $mod     = 'TestModule';
     my @funcs   = qw[func1 func2];
-    
+
     eval { load $mod, @funcs };
     is( $@, '', qq[Loaded exporter module '$mod'] );
-    
+
+    ### test if import gets called properly
+    ok( $mod->imported,                 "   ->import() was called" );
+
+    ### test if functions get exported
     for my $func (@funcs) {
-        ok( $mod->can($func),           "$mod -> can( $func )" );
-        ok( __PACKAGE__->can($func),    "we -> can ( $func )"  ); 
-    }        
-}    
+        ok( $mod->can($func),           "   $mod->can( $func )" );
+        ok( __PACKAGE__->can($func),    "   we ->can ( $func )" );
+    }
+}

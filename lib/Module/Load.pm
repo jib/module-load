@@ -30,18 +30,13 @@ sub load (*;@)  {
             die $err if $err;
         }
     }
-    __PACKAGE__->_export_to_level(1, $mod, @_) if @_;
-}
-
-### 5.004's Exporter doesn't have export_to_level.
-### Taken from Michael Schwerns Test::More and slightly modified
-sub _export_to_level {
-    my $pkg     = shift;
-    my $level   = shift;
-    my $mod     = shift;
-    my $callpkg = caller($level);
-
-    $mod->export($callpkg, @_);
+    {   no strict 'refs';
+        my $import;
+        if (@_ and $import = $mod->can('import')) {
+            unshift @_, $mod;
+            goto &$import;
+        }
+    }
 }
 
 sub _to_file{
