@@ -1,3 +1,10 @@
+Changes for 0.14    Mon Jan 19 17:19:58 2009
+============================================
+* Address #41883: Module::Load cannot import non-Exporter module:
+  import() function for modules used via load() weren't being
+  called properly
+* Test cases are now generated
+
 Changes for 0.12    Sun Sep  9 11:11:08 2007
 ============================================
 * Fix for UNIX'ifying path names on VMS, as suggested by
