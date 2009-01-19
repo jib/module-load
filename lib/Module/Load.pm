@@ -30,6 +30,10 @@ sub load (*;@)  {
             die $err if $err;
         }
     }
+    
+    ### This addresses #41883: Module::Load cannot import 
+    ### non-Exporter module. ->import() routines weren't
+    ### properly called when load() was used.
     {   no strict 'refs';
         my $import;
         if (@_ and $import = $mod->can('import')) {
