@@ -1,3 +1,10 @@
+Changes for 0.16    Fri Feb  6 17:51:14 2009
+============================================
+* This is a bugfix release for users of perl versions 5.8.4 and
+  5.8.5, which works around a core perl bug in those versions that
+  loses arguments from @_ when using 'goto &subroutine'.
+  Users of other perl versions need not upgrade.
+
 Changes for 0.14    Mon Jan 19 17:19:58 2009
 ============================================
 * Address #41883: Module::Load cannot import non-Exporter module:
