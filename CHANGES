@@ -1,3 +1,7 @@
+Changes for 0.18    Tue Mar  2 15:54:30 2010
+============================================
+* Documentation fix from Michael Schwern RT #55123
+
 Changes for 0.16    Fri Feb  6 17:51:14 2009
 ============================================
 * This is a bugfix release for users of perl versions 5.8.4 and
