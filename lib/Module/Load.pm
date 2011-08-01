@@ -47,7 +47,8 @@ sub _to_file{
     local $_    = shift;
     my $pm      = shift || '';
 
-    my @parts = split /::/;
+    ## trailing blanks ignored by default. [rt #69886]
+    my @parts = split /::/, $_, -1;
 
     ### because of [perl #19213], see caveats ###
     my $file = $^O eq 'MSWin32'
