@@ -1,3 +1,8 @@
+Changes for 0.20    Mon Aug  1 19:13:44 2011
+============================================
+* Resolve [rt #69886] reported by Laurent Dami,
+  trailing '::' silently ignored
+
 Changes for 0.18    Tue Mar  2 15:54:30 2010
 ============================================
 * Documentation fix from Michael Schwern RT #55123
