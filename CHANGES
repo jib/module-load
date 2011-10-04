@@ -1,3 +1,8 @@
+Changes for 0.22    Tue Oct  4 21:44:32 2011
+============================================
+* Resolve possible security problem [http://goo.gl/YzHRU]
+  where a '::' prefixed module can 'jump' out of @INC
+
 Changes for 0.20    Mon Aug  1 19:13:44 2011
 ============================================
 * Resolve [rt #69886] reported by Laurent Dami,
