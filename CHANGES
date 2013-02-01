@@ -1,3 +1,8 @@
+Changes for 0.24    Fri Feb  1 18:14:28 2013
+============================================
+* Resolve [rt #83093] "Won't load modules with apostrophes"
+  reported by Dave Golden
+
 Changes for 0.22    Tue Oct  4 21:44:32 2011
 ============================================
 * Resolve possible security problem [http://goo.gl/YzHRU]
