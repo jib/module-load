@@ -7,13 +7,62 @@ use File::Spec ();
 
 sub import {
     my $who = _who();
+    my $h; shift;
 
     {   no strict 'refs';
-        *{"${who}::load"} = *load;
+
+        @_ or (
+	        *{"${who}::load"} = \&load, # compat to prev version
+	        *{"${who}::autoload"} = \&autoload,
+	        return
+	    );
+
+        @$h{@_} = ();
+
+	(exists $h->{none} or exists $h->{''})
+	    and shift, last;
+
+        ((exists $h->{autoload} and shift,1) or (exists $h->{all} and shift))
+	    and *{"${who}::autoload"} = \&autoload;
+
+        ((exists $h->{load} and shift,1) or exists $h->{all})
+	        and *{"${who}::load"} = \&load;
+
+        ((exists $h->{load_remote} and shift,1) or exists $h->{all})
+    	    and *{"${who}::load_remote"} = \&load_remote;
+
+        ((exists $h->{autoload_remote} and shift,1) or exists $h->{all})
+    	    and *{"${who}::autoload_remote"} = \&autoload_remote;
+
     }
+
 }
 
-sub load (*;@)  {
+sub load(*;@){
+    goto &_load;
+}
+
+sub autoload(*;@){
+    unshift @_, 'autoimport';
+    goto &_load;
+}
+
+sub load_remote($$;@_){
+    my ($dst, $src, @exp) = @_;
+
+    eval "package $dst;Module::Load::load('$src', qw/@exp/);";
+    $@ && die "$@";
+}
+
+sub autoload_remote($$;@_){
+    my ($dst, $src, @exp) = @_;
+
+    eval "package $dst;Module::Load::autoload('$src', qw/@exp/);";
+    $@ && die "$@";
+}
+
+sub _load{
+    my $autoimport = $_[0] eq 'autoimport' and shift;
     my $mod = shift or return;
     my $who = _who();
 
@@ -34,13 +83,20 @@ sub load (*;@)  {
     ### This addresses #41883: Module::Load cannot import
     ### non-Exporter module. ->import() routines weren't
     ### properly called when load() was used.
+
     {   no strict 'refs';
         my $import;
-        if (@_ and $import = $mod->can('import')) {
-            unshift @_, $mod;
-            goto &$import;
-        }
+
+	((@_ or $autoimport) and (
+		$import = $mod->can('import')
+	    ) and (
+		unshift(@_, $mod),
+		goto &$import,
+		return
+	    )
+	);
     }
+
 }
 
 sub _to_file{
@@ -179,6 +235,5 @@ This module by Jos Boumans E<lt>kane@cpan.orgE<gt>.
 
 This library is free software; you may redistribute and/or modify it
 under the same terms as Perl itself.
-
 
 =cut
