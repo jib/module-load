@@ -232,7 +232,10 @@ Loads a specified module to the specified package.
   load_remote $pkg, 'Data::Dumper'; # load a module to 'Other::Package'
                                     # but do not import 'Dumper' function
 
-Except specifing the package, 'load_remote' is same as 'load'.
+A module for loading must be quoted.
+
+Except specifing the package and quoting module name,
+'load_remote' is same as 'load'.
 
 =item autoload_remote
 
@@ -245,7 +248,10 @@ Loads a specified module and imports the default functions to the specified pack
   autoload_remote $pkg, 'Data::Dumper'; # load a module to 'Other::Package'
                                         # and imports 'Dumper' function
 
-Except importing the functions, 'autoload_remote' is same as 'load_remote'.
+A module for loading must be quoted.
+
+Except specifing the package and quoting module name,
+'autoload_remote' is same as 'load_remote'.
 
 =back
 
