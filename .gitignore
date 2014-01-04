@@ -8,4 +8,4 @@ Build
 _build
 cover_db/
 MYMETA.*
-module-load*
+Module-Load*
