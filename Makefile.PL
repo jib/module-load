@@ -12,7 +12,7 @@ WriteMakefile1(
     VERSION_FROM    => 'lib/Module/Load.pm', # finds $VERSION
     dist            => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
     BUILD_REQUIRES  => { 'Test::More' => 0.94 },
-    INSTALLDIRS     => ( $] >= 5.009005 ? 'perl' : 'site' ),
+    INSTALLDIRS     => ( $] >= 5.009005 && $] < 5.012 ? 'perl' : 'site' ),
     AUTHOR          => 'Jos Boumans <kane[at]cpan.org>',
 	  ABSTRACT        => 'Load modules in a DWIM style'
 );
