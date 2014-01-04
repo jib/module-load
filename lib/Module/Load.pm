@@ -1,6 +1,6 @@
 package Module::Load;
 
-$VERSION = '0.26';
+$VERSION = '0.28';
 
 use strict;
 use File::Spec ();
@@ -18,7 +18,7 @@ sub import {
         );
 
         @$h{@_} = ();
-        
+
         (exists $h->{none} or exists $h->{''})
             and shift, last;
 
@@ -47,14 +47,14 @@ sub autoload(*;@){
     goto &_load;
 }
 
-sub load_remote($$;@_){
+sub load_remote($$;@){
     my ($dst, $src, @exp) = @_;
 
     eval "package $dst;Module::Load::load('$src', qw/@exp/);";
     $@ && die "$@";
 }
 
-sub autoload_remote($$;@_){
+sub autoload_remote($$;@){
     my ($dst, $src, @exp) = @_;
 
     eval "package $dst;Module::Load::autoload('$src', qw/@exp/);";
@@ -149,9 +149,9 @@ Module::Load - runtime require of both modules and files
 =head1 SYNOPSIS
 
   use Module::Load;
-    
+
   my $module = 'Data::Dumper';
-    
+
   load Data::Dumper;     # loads that module, but not import any functions
                          # -> cannot use 'Dumper' function
 
@@ -164,9 +164,9 @@ Module::Load - runtime require of both modules and files
   my $script = 'some/script.pl'
   load $script;
   load 'some/script.pl';  # use quotes because of punctuations
-    
+
   load thing;             # try 'thing' first, then 'thing.pm'
-   
+
   load CGI, ':all';       # like 'use CGI qw[:standard]'
 
 =head1 DESCRIPTION
@@ -297,7 +297,7 @@ Imports the selected functions.
   use Module::Load;
 
   # imports 'autoload' only
-  use Module::Load 'autoload'; 
+  use Module::Load 'autoload';
 
   # imports 'autoload' and 'autoload_remote', but don't import 'load';
   use Module::Load qw/autoload autoload_remote/;
