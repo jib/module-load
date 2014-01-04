@@ -1,41 +1,37 @@
-Changes for 0.24    Fri Feb  1 18:14:28 2013
-============================================
+0.26    Sat Jan  4 10:08:35 GMT 2014
+* New functions added (reisub)
+* Documented by magnolia
+
+0.24    Fri Feb  1 18:14:28 GMT 2013
 * Resolve [rt #83093] "Won't load modules with apostrophes"
   reported by Dave Golden
 
-Changes for 0.22    Tue Oct  4 21:44:32 2011
-============================================
+0.22    Tue Oct  4 21:44:32 GMT 2011
 * Resolve possible security problem [http://goo.gl/YzHRU]
   where a '::' prefixed module can 'jump' out of @INC
 
-Changes for 0.20    Mon Aug  1 19:13:44 2011
-============================================
+0.20    Mon Aug  1 19:13:44 BST 2011
 * Resolve [rt #69886] reported by Laurent Dami,
   trailing '::' silently ignored
 
-Changes for 0.18    Tue Mar  2 15:54:30 2010
-============================================
+0.18    Tue Mar  2 15:54:30 GMT 2010
 * Documentation fix from Michael Schwern RT #55123
 
-Changes for 0.16    Fri Feb  6 17:51:14 2009
-============================================
+0.16    Fri Feb  6 17:51:14 CET 2009
 * This is a bugfix release for users of perl versions 5.8.4 and
   5.8.5, which works around a core perl bug in those versions that
   loses arguments from @_ when using 'goto &subroutine'.
   Users of other perl versions need not upgrade.
 
-Changes for 0.14    Mon Jan 19 17:19:58 2009
-============================================
+0.14    Mon Jan 19 17:19:58 CET 2009
 * Address #41883: Module::Load cannot import non-Exporter module:
   import() function for modules used via load() weren't being
   called properly
 * Test cases are now generated
 
-Changes for 0.12    Sun Sep  9 11:11:08 2007
-============================================
+0.12    Sun Sep  9 11:11:08 CET 2007
 * Fix for UNIX'ifying path names on VMS, as suggested by
   John Malmberg
 
-Changes for 0.10    Wed Jun  2 14:31:23 2004
-============================================
+0.10    Wed Jun  2 14:31:23 CEST 2004
 * Make explicit imports work (Thanks to Jonas B. Nielsen)
