@@ -3,6 +3,7 @@ package Module::Load;
 $VERSION = '0.28';
 
 use strict;
+use warnings;
 use File::Spec ();
 
 sub import {
@@ -17,7 +18,7 @@ sub import {
             return
         );
 
-        @$h{@_} = ();
+        map { $h->{$_} = () if defined $_ } @_;
 
         (exists $h->{none} or exists $h->{''})
             and shift, last;
