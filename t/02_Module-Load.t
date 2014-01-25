@@ -2,6 +2,7 @@
 
 use Test::More;
 use strict;
+use warnings;
 
 #
 # Module::Load; test new features:
@@ -20,6 +21,7 @@ my ($afx, $cnt, $r, $tcode) = ('TestXYZ_', 0);
 sub _reset{
     undef %{Data::Dumper::};
     undef %{XYZ::Module::};
+    no warnings q[uninitialized];
     eval "undef %{$afx$cnt::}";
     delete $INC{'Data/Dumper.pm'};
 }
