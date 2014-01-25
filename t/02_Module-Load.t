@@ -237,6 +237,8 @@ subtest 'load_remote' => sub{
 	    load_remote("XYZ::Module","______","Data::Dumper");
 	    XYZ::Module::Dumper($WORLD);');
     cant_locate();
+
+    done_testing();
 };
 
 subtest 'autoload_remote' => sub{
