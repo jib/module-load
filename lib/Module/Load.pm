@@ -334,6 +334,25 @@ C<Module::Load> cannot do implicit imports, only explicit imports.
 to import from a module, even if the functions are in that modules'
 C<@EXPORT>)
 
+=head1 SEE ALSO
+
+L<Module::Runtime> provides functions for loading modules,
+checking the validity of a module name,
+converting a module name to partial C<.pm> path,
+and related utility functions.
+
+L<"require" in perlfunc|https://metacpan.org/pod/perlfunc#require>
+and
+L<"use" in perlfunc|https://metacpan.org/pod/perlfunc#use>.
+
+L<Mojo::Loader> is a "class loader and plugin framework",
+and is included in the
+L<Mojolicious|https://metacpan.org/release/Mojolicious> distribution.
+
+L<Module::Loader> is a module for finding and loading modules
+in a given namespace, inspired by C<Mojo::Loader>.
+
+
 =head1 ACKNOWLEDGEMENTS
 
 Thanks to Jonas B. Nielsen for making explicit imports work.
