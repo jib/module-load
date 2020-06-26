@@ -358,7 +358,7 @@ Thanks to Jonas B. Nielsen for making explicit imports work.
 
 =head1 BUG REPORTS
 
-Please report bugs or other issues to E<lt>bug-module-load@rt.cpan.org<gt>.
+Please report bugs or other issues to E<lt>bug-module-load@rt.cpan.orgE<gt>.
 
 =head1 AUTHOR
 
