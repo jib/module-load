@@ -6,8 +6,16 @@ use strict;
 use warnings;
 use File::Spec ();
 
+push @INC, '.' if ! grep { $_ eq '.' } @INC;
+
 sub import {
     my $who = _who();
+
+    if (defined $_[1] && $_[1] eq 'dot_in_inc'){
+        @INC = grep { $_ ne '.' } @INC if ! $_[2];
+        @_ = @_[0, 3..$#_];
+    }
+
     my $h; shift;
 
     {   no strict 'refs';
@@ -149,6 +157,7 @@ Module::Load - runtime require of both modules and files
 =head1 SYNOPSIS
 
   use Module::Load;
+  use Module::Load dot_in_inc => 0;
 
   my $module = 'Data::Dumper';
 
@@ -332,6 +341,11 @@ C<Module::Load> cannot do implicit imports, only explicit imports.
 (in other words, you always have to specify explicitly what you wish
 to import from a module, even if the functions are in that modules'
 C<@EXPORT>)
+
+In C<perl 5.26.0+>, the local directory, aka. C<.> will no longer be
+included in the C<@INC> array. To ensure we don't break existing modules,
+we add this back in by default. You can disable this behaviour by C<use>ing
+the module in this way: C<use Module::Load dot_in_inc => 0>.
 
 =head1 SEE ALSO
 
