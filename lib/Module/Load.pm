@@ -1,10 +1,11 @@
 package Module::Load;
 
-$VERSION = '0.34';
-
 use strict;
 use warnings;
 use File::Spec ();
+
+our $VERSION = '0.34';
+
 
 sub import {
     my $who = _who();
