@@ -235,7 +235,7 @@ Loads a specified module to the specified package.
 
 A module for loading must be quoted.
 
-Except specifing the package and quoting module name,
+Except specifying the package and quoting module name,
 'load_remote' is same as 'load'.
 
 =item autoload_remote
@@ -251,7 +251,7 @@ Loads a specified module and imports the default functions to the specified pack
 
 A module for loading must be quoted.
 
-Except specifing the package and quoting module name,
+Except specifying the package and quoting module name,
 'autoload_remote' is same as 'load_remote'.
 
 =back
